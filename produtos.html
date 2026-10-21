@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - E-veg</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">E-veg</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre_nos.html">Sobre nós</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="carrinho.html">Carrinho (<span id="contador">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Produtos</h1>
+        <div class="produto">
+            <h3>Hambúrguer de grão-de-bico</h3>
+            <p>Pacote com 4 unidades, pronto para grelhar.</p>
+            <p class="preco">R$ 24,90</p>
+            <button class="botao" onclick="adicionar('hamburguer')">Adicionar ao carrinho</button>
+        </div>
+        <div class="produto">
+            <h3>Leite de aveia</h3>
+            <p>Sem açúcar adicionado, 1 litro.</p>
+            <p class="preco">R$ 12,50</p>
+            <button class="botao" onclick="adicionar('leite')">Adicionar ao carrinho</button>
+        </div>
+        <div class="produto">
+            <h3>Queijo de castanha</h3>
+            <p>Curado, feito com castanha-de-caju, 200 g.</p>
+            <p class="preco">R$ 38,00</p>
+            <button class="botao" onclick="adicionar('queijo')">Adicionar ao carrinho</button>
+        </div>
+        <div class="produto">
+            <h3>Chocolate 70% cacau</h3>
+            <p>Barra sem leite nem derivados, 80 g.</p>
+            <p class="preco">R$ 16,90</p>
+            <button class="botao" onclick="adicionar('chocolate')">Adicionar ao carrinho</button>
+        </div>
+        <div class="produto">
+            <h3>Granola artesanal</h3>
+            <p>Aveia, castanhas e frutas secas, 400 g.</p>
+            <p class="preco">R$ 21,00</p>
+            <button class="botao" onclick="adicionar('granola')">Adicionar ao carrinho</button>
+        </div>
+        <div class="produto">
+            <h3>Sabonete vegetal</h3>
+            <p>Sem testes em animais, lavanda, 90 g.</p>
+            <p class="preco">R$ 14,00</p>
+            <button class="botao" onclick="adicionar('sabonete')">Adicionar ao carrinho</button>
+        </div>
+    </main>
+    <footer>
+        <p><a href="termos_de_uso.html">Termos de uso</a></p>
+        <p>© 2026 E-veg - Projeto acadêmico</p>
+    </footer>
+</body>
+</html>

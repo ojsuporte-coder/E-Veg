@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento de Hospedagem - E-veg</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">E-veg</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre_nos.html">Sobre nós</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html">Orçamento</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="carrinho.html">Carrinho (<span id="contador">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Orçamento de hospedagem</h1>
+        <p>Escolha as opções e veja o valor total.</p>
+        <form onchange="calcular()" onsubmit="return false">
+            <label for="plano">Plano</label>
+            <select id="plano">
+                <option value="19.9">Básico - R$ 19,90 por mês</option>
+                <option value="39.9" selected>Padrão - R$ 39,90 por mês</option>
+                <option value="79.9">Premium - R$ 79,90 por mês</option>
+            </select>
+
+            <label for="periodo">Período</label>
+            <select id="periodo">
+                <option value="1">1 mês</option>
+                <option value="6">6 meses (10% de desconto)</option>
+                <option value="12">12 meses (20% de desconto)</option>
+            </select>
+
+            <label>Extras</label>
+            <label class="opcao"><input type="checkbox" id="dominio"> Domínio .com.br - R$ 40,00 por ano</label>
+            <label class="opcao"><input type="checkbox" id="email"> E-mail profissional - R$ 9,90 por mês</label>
+            <label class="opcao"><input type="checkbox" id="backup"> Backup diário - R$ 7,90 por mês</label>
+        </form>
+        <p>Total estimado:</p>
+        <p class="resultado" id="resultado"></p>
+    </main>
+    <footer>
+        <p><a href="termos_de_uso.html">Termos de uso</a></p>
+        <p>© 2026 E-veg - Projeto acadêmico</p>
+    </footer>
+</body>
+</html>
