@@ -10,6 +10,7 @@ O site permite navegar pelo catálogo, montar um carrinho, simular a finalizaç�
 
 ## Sumário
 
+- [Escopo do projeto](#escopo-do-projeto)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Como executar](#como-executar)
@@ -26,12 +27,58 @@ O site permite navegar pelo catálogo, montar um carrinho, simular a finalizaç�
 - [Como o código funciona](#como-o-código-funciona)
 - [Como adicionar um produto](#como-adicionar-um-produto)
 - [Regras do orçamento de hospedagem](#regras-do-orçamento-de-hospedagem)
+- [Orçamento do projeto (custos)](#orçamento-do-projeto-custos)
 - [Identidade visual](#identidade-visual)
+- [Testes](#testes)
 - [Limitações conhecidas](#limitações-conhecidas)
-- [Melhorias futuras](#melhorias-futuras)
+- [Melhorias do MVP](#melhorias-do-mvp)
+- [Uso de Inteligência Artificial](#uso-de-inteligência-artificial)
+- [Diário de bordo](#diário-de-bordo)
 - [Equipe](#equipe)
 
 ---
+
+## Escopo do projeto
+
+### Objetivo
+
+Entregar um **MVP** (produto mínimo viável) de uma loja virtual de produtos veganos que mostre o fluxo completo de compra e seja **acessível** para pessoas com deficiência visual e auditiva, funcionando bem em computador e celular.
+
+### Dentro do escopo (entregue no MVP)
+
+| Área | O que está incluso |
+|---|---|
+| Loja | Catálogo com 6 produtos de exemplo, carrinho que guarda os itens no navegador, checkout simulado com confirmação |
+| Páginas de apoio | Início, Sobre nós (com a equipe), FAQ, Contato, Login (simulado) e Termos de uso |
+| Orçamento | Calculadora de orçamento de hospedagem (plano, período, extras e descontos) |
+| Acessibilidade | Botão único com menu: **Baixa visão** (Sienna), **Cegos** (narração por voz) e **Surdos** (VLibras), mais boas práticas WAI-ARIA no código |
+| Responsividade | Layout adaptado a celulares, tablets e computadores, com menu de navegação recolhível |
+| Qualidade | 145 verificações automáticas (pasta `tests/`) e este README |
+
+### Fora do escopo (não será feito neste MVP)
+
+- Back-end, banco de dados e contas de usuário reais.
+- Pagamento real, cálculo de frete e emissão de nota fiscal.
+- Controle de estoque, painel administrativo e cadastro de produtos.
+- Fotos reais dos produtos, avaliações e busca.
+- Versões em outros idiomas.
+
+### Premissas e restrições
+
+- O site é **estático** (HTML, CSS e JavaScript puros) e é publicado no **GitHub Pages**.
+- Os produtos, preços e textos são **exemplos** e podem ser trocados.
+- O VLibras e o Sienna são serviços externos: precisam de internet e podem mudar sem aviso.
+- Projeto acadêmico: não há venda real nem tratamento de dados pessoais em servidor.
+
+### Critérios de aceite do MVP
+
+- [x] As 10 páginas abrem sem erro de JavaScript.
+- [x] É possível adicionar produtos, ver o carrinho e confirmar um pedido de demonstração.
+- [x] Formulários validam os campos e mostram mensagem de confirmação.
+- [x] O botão de acessibilidade abre o menu com as três opções e funciona pelo teclado.
+- [x] Nenhuma página tem rolagem lateral em celulares de 320 a 390 px de largura.
+- [ ] VLibras e Sienna conferidos no site publicado, com internet (veja [Testes](#testes)).
+- [ ] Teste em celulares reais e com leitores de tela (veja [Testes](#testes)).
 
 ## Funcionalidades
 
@@ -98,6 +145,9 @@ E-Veg/
 │   └── script.js               Todo o JavaScript do site
 ├── img/                        Imagens (vazia por enquanto)
 ├── assets/                     Outros arquivos (vazia por enquanto)
+├── tests/
+│   ├── teste_funcional.py      Testes automáticos de funcionamento
+│   └── teste_responsivo.py     Testes automáticos de celular e tablet
 ├── docs/
 │   └── readme.txt              Resumo curto do projeto
 ├── Integrantes.txt             Lista da equipe
@@ -476,6 +526,44 @@ total  = total + domínio (se marcado)
 Exemplo: plano Padrão, 12 meses, com backup e domínio:
 `(39,90 + 7,90) × 12 = 573,60` → com 20% de desconto `458,88` → mais o domínio `498,88`.
 
+## Orçamento do projeto (custos)
+
+> Não confunda com a **calculadora de orçamento de hospedagem** (página `orcamento_hospedagem.html`), explicada na seção anterior. Aqui está o custo para **construir e manter** o próprio E-veg.
+
+### Custos de infraestrutura
+
+| Item | Custo | Observação |
+|---|---|---|
+| Hospedagem (GitHub Pages) | R$ 0,00 | Plano gratuito; adequado a sites estáticos como este |
+| Fontes (Google Fonts) | R$ 0,00 | Gratuito |
+| VLibras (tradutor de Libras) | R$ 0,00 | Ferramenta gratuita do governo federal |
+| Sienna (ajustes visuais) | R$ 0,00 | Gratuito e de código aberto (licença MIT) |
+| Narração por voz (Web Speech API) | R$ 0,00 | Recurso do próprio navegador |
+| Domínio `.com.br` (opcional) | R$ 40,00 por ano | Valor usado na calculadora do projeto; hoje o site usa o endereço `github.io` |
+| **Total mínimo** | **R$ 0,00** | |
+| **Total com domínio próprio** | **R$ 40,00 no primeiro ano** | |
+
+### Se o projeto crescer: hospedagem paga
+
+Caso o E-veg ganhe back-end (pedidos e contas reais), a hospedagem gratuita deixa de bastar. Cenários calculados com as mesmas regras da calculadora do site (12 meses, com 20% de desconto):
+
+| Plano | Valor mensal | 12 meses | 12 meses + domínio |
+|---|---|---|---|
+| Básico | R$ 19,90 | R$ 191,04 | R$ 231,04 |
+| Padrão | R$ 39,90 | R$ 383,04 | R$ 423,04 |
+| Premium | R$ 79,90 | R$ 767,04 | R$ 807,04 |
+
+### Custo de pessoas e ferramentas (a preencher pela equipe)
+
+As horas trabalhadas e o custo de ferramentas pagas **não foram registrados** durante o desenvolvimento. A equipe deve preencher com os valores reais:
+
+| Item | Quantidade | Valor unitário | Total |
+|---|---|---|---|
+| Horas da equipe de desenvolvimento | a preencher | a preencher | a preencher |
+| Assistente de IA (se usado em plano pago) | a preencher | a preencher | a preencher |
+
+Fórmula: `custo de pessoas = horas totais × valor da hora`. Exemplo **apenas ilustrativo**: 6 pessoas × 20 horas × R$ 40,00 por hora = R$ 4.800,00.
+
 ## Identidade visual
 
 | Elemento | Valor |
@@ -489,6 +577,59 @@ Exemplo: plano Padrão, 12 meses, com backup e domínio:
 | Fonte dos títulos | Playfair Display |
 | Fonte do texto | Lato |
 
+## Testes
+
+### Estratégia
+
+O projeto combina **testes automáticos** (rodam em um navegador real, o Chromium, controlado pela biblioteca Playwright) e uma **lista de testes manuais** para o que depende de internet, de aparelhos reais ou de pessoas.
+
+### Testes automáticos
+
+Resultado da última execução (17/11/2026): **145 verificações, 0 falhas**.
+
+| Arquivo | Verificações | O que confere |
+|---|---|---|
+| `tests/teste_funcional.py` | 34 | As 10 páginas sem erro de JavaScript; primeiro `Tab` no botão de acessibilidade; menu abre com `Enter` e fecha com `Esc`; compra completa (adicionar, carrinho, total, checkout e confirmação); checkout com carrinho vazio; contato e login; FAQ abre e fecha; cálculo do orçamento; narração liga e desliga; opções Baixa visão e Surdos clicam nos widgets (simulados) |
+| `tests/teste_responsivo.py` | 111 | Sem rolagem lateral nas 10 páginas em 5 tamanhos de tela (320×568, 360×640, 390×844, 768×1024 e 740×360); menu do celular abre e fecha; links com altura de toque; produtos em coluna única; menu de acessibilidade dentro da tela (inclusive celular deitado); página sem CSS não fica quebrada |
+
+**Como rodar** (na pasta do projeto):
+
+```bash
+pip install playwright
+playwright install chromium
+python tests/teste_funcional.py
+python tests/teste_responsivo.py
+```
+
+Cada script termina com uma linha `Total: N verificações | falhas: 0`. Se houver falha, ele lista qual foi e o valor encontrado.
+
+### Testes manuais (checklist)
+
+| Teste | Status |
+|---|---|
+| VLibras real: a opção **Surdos** abre o tradutor e o botão original fica escondido | Pendente (precisa de internet) |
+| Sienna real: a opção **Baixa visão** abre o painel de ajustes | Pendente (precisa de internet) |
+| Site publicado no GitHub Pages sem cache antigo (`Ctrl + F5`) | Pendente |
+| Celular Android e iPhone reais (toque, rotação, menu) | Pendente |
+| Leitor de tela (NVDA no Windows, VoiceOver no iPhone ou TalkBack no Android) | Pendente |
+| Voz em português do Brasil da narração em Chrome, Edge e Safari | Pendente |
+| Navegação só pelo teclado, sem mouse, em todas as páginas | Pendente |
+| Teste com usuários reais (pessoas cegas, com baixa visão e surdas) | Pendente |
+
+### Limites dos testes
+
+- O Sienna e o VLibras foram **simulados** nos testes automáticos, porque o ambiente de teste não tinha internet. O teste confere que o menu os aciona, não que eles funcionam por dentro.
+- Teste automático não substitui teste com pessoas: ele não diz se a narração é agradável ou se o texto é fácil de entender.
+
+### Problemas encontrados e corrigidos com os testes
+
+| Problema | Causa | Correção |
+|---|---|---|
+| Botão do VLibras continuava aparecendo na tela | O botão fica dentro de um *shadow root*, que o CSS do site não alcança | Passou a ser escondido por `window.VLibrasWidget.initBtn`, previsto no manual oficial |
+| Opção Surdos não avisava nada sem internet | O código antigo do VLibras existia no HTML mesmo sem o script carregar | O aviso agora depende do widget ter carregado de fato |
+| Erro de JavaScript no checkout, contato e login | Páginas geradas por um modelo desatualizado, sem os `id` que o script esperava | Páginas regeneradas pelo modelo correto |
+| Menu de acessibilidade com ícones gigantes no site publicado | CSS antigo em cache, misturado com HTML novo | Versão nos arquivos (`?v=3`), menu que nasce fechado e ícones com tamanho próprio |
+
 ## Limitações conhecidas
 
 - **Sem back-end:** pedidos, mensagens e logins não são enviados nem guardados em servidor algum.
@@ -500,13 +641,117 @@ Exemplo: plano Padrão, 12 meses, com backup e domínio:
 - **Narração limitada ao conteúdo principal:** não lê o menu nem os valores digitados nos formulários.
 - **VLibras e Sienna dependem de internet e de serviços externos:** veja as seções sobre cada um.
 
-## Melhorias futuras
+## Melhorias do MVP
 
-- Fotos dos produtos.
-- Campo para alterar a quantidade no carrinho.
-- Back-end para salvar pedidos, contas e mensagens.
-- Pagamento real e cálculo de frete.
-- Busca e filtro de produtos por categoria.
+Próximos passos para evoluir o MVP, em ordem de prioridade.
+
+### Prioridade alta
+
+| Melhoria | Por quê |
+|---|---|
+| Fotos dos produtos, com texto alternativo | Hoje os produtos aparecem só com texto; fotos ajudam na venda e o texto alternativo mantém a acessibilidade |
+| Campo para alterar a quantidade no carrinho | Hoje só é possível remover o item e adicionar de novo |
+| Fixar a versão do Sienna no endereço do script | Evita que uma atualização do serviço mude o comportamento do menu |
+| Testes manuais pendentes (celulares reais, leitores de tela, VLibras e Sienna publicados) | São os itens do checklist de [Testes](#testes) ainda não conferidos |
+
+### Prioridade média
+
+| Melhoria | Por quê |
+|---|---|
+| Máscara e validação do CEP, com busca automática do endereço | Reduz erros de digitação no checkout |
+| Busca e filtro de produtos por categoria | Facilita encontrar produtos quando o catálogo crescer |
+| Página de detalhe de cada produto | Espaço para descrição completa, ingredientes e fotos |
+| Escolha da voz e narração de cada elemento ao receber foco | Deixa a narração mais completa para pessoas cegas |
+| Auditoria automática de acessibilidade (por exemplo, Lighthouse ou axe) | Encontra falhas que o teste atual não cobre |
+| Meta tags de compartilhamento e SEO | Melhora a aparência do link em redes sociais e buscadores |
+
+### Prioridade baixa (exigem back-end)
+
+| Melhoria | Por quê |
+|---|---|
+| Pedidos, contas e mensagens salvos em servidor | Hoje nada sai do navegador |
+| Login real, com senha protegida | O login atual é só demonstração |
+| Pagamento real e cálculo de frete | Necessários para vender de verdade |
+| Termos de uso e política de privacidade revisados (LGPD) | Obrigatórios quando houver dados pessoais reais |
+
+## Uso de Inteligência Artificial
+
+### Ferramenta
+
+Foi usado o **Claude**, assistente de inteligência artificial da Anthropic, em conversas de chat entre **20/10/2026 e 17/11/2026**. A equipe enviou o projeto inicial (`E-Veg.zip`) e um print do site publicado, e o assistente devolveu os arquivos atualizados.
+
+### O que a IA fez
+
+| Etapa | Contribuição da IA |
+|---|---|
+| Diagnóstico e correção | Encontrou o CSS cortado e as páginas sem navegação; completou o CSS e o conteúdo das 10 páginas |
+| Simplificação | Reescreveu o JavaScript em estilo básico, sem funções avançadas, a pedido da equipe |
+| Acessibilidade | Implementou a narração por voz; pesquisou e integrou o VLibras e o Sienna; criou o botão único com menu; aplicou boas práticas WAI-ARIA |
+| Responsividade | Ajustou o layout para celulares e corrigiu o visual quebrado do site publicado |
+| Testes | Escreveu os testes automáticos da pasta `tests/` e os executou |
+| Documentação | Escreveu e manteve este README |
+
+### O que a IA não fez
+
+- Não definiu o tema nem o escopo do projeto: os pedidos vieram da equipe, passo a passo.
+- Não viu o site publicado: só recebeu um print e arquivos enviados pela equipe.
+- Não testou o VLibras e o Sienna reais, nem celulares reais, nem pessoas usando o site.
+- Os produtos, preços, textos do FAQ e dos Termos de uso são **exemplos gerados** e precisam ser revisados pela equipe.
+
+### Como a informação foi verificada
+
+- A narração segue a documentação da Web Speech API (MDN).
+- A integração do VLibras segue o manual oficial do VLibras Widget, versão 7.0.0.
+- No Sienna, o nome do botão usado pelo menu (`.asw-menu-btn`) **não** vem de uma documentação oficial de integração; veja o aviso em [o botão e o menu](#acessibilidade-o-botão-e-o-menu).
+- O que foi possível foi conferido por testes automáticos; o restante está no checklist de testes manuais.
+
+### Responsabilidade da equipe
+
+A IA acelera o trabalho, mas **o código entregue é responsabilidade da equipe**. Antes de apresentar ou publicar:
+
+1. Leia e entenda o código, principalmente `js/script.js`, e ajuste o que não fizer sentido para o grupo.
+2. Execute o checklist de testes manuais.
+3. Troque os textos e dados de exemplo pelos reais.
+4. Informe o uso de IA conforme as regras da disciplina ou da instituição.
+5. Evite enviar dados pessoais ou sigilosos à IA. Neste projeto, o arquivo `Integrantes.txt` (nomes da equipe) foi enviado junto com os arquivos.
+
+### Principais pedidos feitos à IA
+
+1. Consertar o site.
+2. Simplificar o código, como se feito por quem está começando.
+3. Criar um README completo.
+4. Adicionar recurso de acessibilidade com voz que narra, para pessoas com deficiência visual.
+5. Documentar a API de voz usada, depois incluir o VLibras e, em seguida, reunir recursos para todos os públicos (cegos, surdos e baixa visão).
+6. Reunir os três recursos em um único botão flutuante, com menu lateral.
+7. Tirar o botão original do VLibras da tela principal.
+8. Corrigir o bug visual no site publicado e deixar o site responsivo para celulares.
+9. Garantir que o README tenha diário, escopo, orçamento, testes, melhorias do MVP e uso de IA.
+
+## Diário de bordo
+
+> As datas abaixo foram reconstruídas a partir do histórico de arquivos e das conversas com a IA; as marcadas com "a" (aproximada) cobrem um intervalo. A equipe deve ajustar com as datas reais e acrescentar as reuniões em que decidiu cada ponto.
+
+| Data | Etapa | O que foi feito | Resultado ou decisão |
+|---|---|---|---|
+| 20/10/2026 | Recebimento e diagnóstico | Análise do projeto inicial: 10 páginas quase vazias, CSS cortado, só a página inicial com menu | Versão corrigida entregue (`E-Veg-corrigido.zip`): CSS completo, menu em todas as páginas, catálogo, carrinho, checkout, formulários, FAQ, termos e orçamento |
+| 20/10 a 28/10 (aprox.) | Simplificação e documentação | Código reescrito em estilo básico; primeiro README | Decisão: manter o código simples, sem funções avançadas |
+| 20/10 a 28/10 (aprox.) | Primeiro recurso de acessibilidade | Narração por voz (Web Speech API) e documentação da API; depois inclusão do VLibras | A narração chegou a ser removida por se achar que o VLibras bastava; depois se percebeu que ele atende surdos, não cegos |
+| 20/10 a 28/10 (aprox.) | Escolha dos recursos | Pesquisa por um widget que atendesse "todas as deficiências" | Conclusão: nenhuma ferramenta cobre tudo sozinha. Decisão: **Sienna + narração + VLibras** |
+| 29/10/2026 | Botão único de acessibilidade | Botão flutuante com ícone universal e menu lateral com Baixa visão, Cegos e Surdos | Menu testado em navegador, no computador e no celular |
+| 29/10/2026 | VLibras fora da tela principal | Descoberta de que o botão do VLibras fica em um *shadow root*; uso de `window.VLibrasWidget.initBtn` | Botão original escondido; só o menu aciona o VLibras |
+| 29/10 a 03/11 (aprox.) | Acessibilidade do código | Boas práticas WAI-ARIA (link para pular ao conteúdo, avisos para leitor de tela, FAQ acessível) | Seção própria no README |
+| 03/11/2026 | Correção de bug e testes | Erro de JavaScript no checkout, contato e login, causado por páginas geradas com modelo desatualizado | Páginas regeneradas; 34 verificações automáticas passando |
+| 17/11/2026 | Bug visual no site publicado | Print do GitHub Pages com menu sem estilo e ícones gigantes (CSS antigo em cache) | Versão nos arquivos (`?v=3`), menu que nasce fechado e ícones com tamanho próprio |
+| 17/11/2026 | Responsividade | Menu recolhível, produtos em coluna, ajustes de toque e do menu de acessibilidade | 111 verificações automáticas em 5 tamanhos de tela |
+| 17/11/2026 | Documentação final | README com escopo, orçamento, testes, melhorias do MVP, uso de IA e este diário | 145 verificações automáticas passando; testes manuais pendentes |
+
+### Registro da equipe (a preencher)
+
+| Data | Participantes | O que foi discutido ou decidido | Próximos passos |
+|---|---|---|---|
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 ## Equipe
 
