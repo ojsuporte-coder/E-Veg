@@ -1,5 +1,18 @@
 /* Estilos do E-veg */
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -142,6 +155,8 @@ legend {
     border-radius: 12px;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
     padding: 12px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     z-index: 9999;
 }
 
@@ -220,12 +235,6 @@ legend {
     visibility: hidden !important;
 }
 
-@media (max-width: 400px) {
-    .acess-menu {
-        width: 220px;
-    }
-}
-
 /* Cabeçalho */
 header {
     background-color: #c8d4c2;
@@ -260,11 +269,21 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Botão "Menu" (só aparece no celular) */
+.menu-botao {
+    display: none;
+}
+
 /* Conteúdo */
 main {
     max-width: 900px;
     margin: 0 auto;
     padding: 30px 20px;
+    overflow-wrap: break-word;
+}
+
+#area-carrinho {
+    overflow-x: auto;
 }
 
 .destaque {
@@ -366,4 +385,128 @@ footer a {
 
 footer nav {
     margin-bottom: 10px;
+}
+
+/* ===== Celular e telas pequenas ===== */
+@media (max-width: 720px) {
+    header {
+        padding: 10px 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .menu-botao {
+        display: block;
+        background-color: #4b5e45;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        min-height: 44px;
+        font-family: 'Lato', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav.fechado {
+        display: none;
+    }
+
+    nav ul {
+        margin-top: 8px;
+    }
+
+    nav li {
+        display: block;
+        margin: 0;
+        border-top: 1px solid #97ad94;
+    }
+
+    nav a {
+        display: block;
+        padding: 12px 4px;
+    }
+
+    main {
+        padding: 20px 16px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .destaque {
+        padding: 20px 16px;
+    }
+
+    .produto {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .botao {
+        min-height: 44px;
+        padding: 12px 20px;
+    }
+
+    form {
+        max-width: 100%;
+    }
+
+    th, td {
+        padding: 6px 4px;
+        font-size: 14px;
+    }
+
+    .pergunta {
+        padding: 14px 0;
+    }
+
+    footer {
+        padding-bottom: 90px;
+    }
+
+    /* botão e menu de acessibilidade */
+    .acess-botao {
+        width: 56px;
+        height: 56px;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .acess-botao svg {
+        width: 38px;
+        height: 38px;
+    }
+
+    .acess-menu {
+        right: 12px;
+        bottom: 80px;
+        width: calc(100% - 24px);
+        max-width: 320px;
+        max-height: calc(100vh - 100px);
+    }
+}
+
+/* Celular deitado (pouca altura): o menu de acessibilidade ocupa a altura toda */
+@media (max-height: 480px) {
+    .acess-menu {
+        bottom: 12px;
+        max-height: calc(100vh - 24px);
+    }
 }

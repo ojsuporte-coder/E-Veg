@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - E-veg</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <script src="js/script.js?v=3"></script>
 </head>
 <body>
     <!-- Menu de acessibilidade: um botão que abre as opções para cada público -->
     <div class="acess">
-        <div class="acess-menu" id="acess-menu" role="group" aria-label="Opções de acessibilidade">
+        <div class="acess-menu" id="acess-menu" style="display: none;" role="group" aria-label="Opções de acessibilidade">
             <p class="acess-titulo">Acessibilidade</p>
 
             <button class="acess-item" id="item-baixa-visao" onclick="abrirBaixaVisao()">
                 <span class="acess-icone">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
                 </span>
                 <span><b>Baixa visão</b><br><small>Fonte, contraste e leitura</small></span>
             </button>
 
             <button class="acess-item" id="botao-narrar" onclick="narrar()">
                 <span class="acess-icone">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
                 </span>
                 <span><b>Cegos</b><br><small id="texto-narrar">Narrar a página em voz alta</small></span>
             </button>
@@ -38,20 +38,21 @@
 
             <button class="acess-item" id="item-libras" onclick="abrirLibras()">
                 <span class="acess-icone">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V6a1.5 1.5 0 0 1 3 0v5"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V11"/><path d="M14 11V6a1.5 1.5 0 0 1 3 0v7"/><path d="M8 13l-1.5-2a1.5 1.5 0 0 0-2.4 1.8L7 18a6 6 0 0 0 5 3h1a5 5 0 0 0 5-5v-3"/></svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8 13V6a1.5 1.5 0 0 1 3 0v5"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V11"/><path d="M14 11V6a1.5 1.5 0 0 1 3 0v7"/><path d="M8 13l-1.5-2a1.5 1.5 0 0 0-2.4 1.8L7 18a6 6 0 0 0 5 3h1a5 5 0 0 0 5-5v-3"/></svg>
                 </span>
                 <span><b>Surdos</b><br><small>Tradução para Libras (VLibras)</small></span>
             </button>
         </div>
 
         <button class="acess-botao" id="acess-botao" onclick="abrirMenuAcessibilidade()" aria-label="Abrir menu de acessibilidade" aria-expanded="false" aria-controls="acess-menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><circle cx="12" cy="6.4" r="1.7" class="preenchido"/><path d="M6 9.4h12"/><path d="M12 9.4v4.2"/><path d="M12 13.6l-3 5.2"/><path d="M12 13.6l3 5.2"/></svg>
+            <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><circle cx="12" cy="6.4" r="1.7" class="preenchido"/><path d="M6 9.4h12"/><path d="M12 9.4v4.2"/><path d="M12 13.6l-3 5.2"/><path d="M12 13.6l3 5.2"/></svg>
         </button>
     </div>
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header>
         <a class="logo" href="index.html">E-veg</a>
-        <nav aria-label="Menu principal">
+        <button class="menu-botao" id="menu-botao" onclick="abrirMenu()" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+        <nav id="menu-principal" aria-label="Menu principal">
             <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="produtos.html">Produtos</a></li>

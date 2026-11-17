@@ -21,6 +21,8 @@ O site permite navegar pelo catálogo, montar um carrinho, simular a finalizaç�
 - [Acessibilidade: Libras com VLibras](#acessibilidade-libras-com-vlibras)
 - [Acessibilidade: ajustes visuais com Sienna](#acessibilidade-ajustes-visuais-com-sienna)
 - [Acessibilidade do código (WAI-ARIA)](#acessibilidade-do-código-wai-aria)
+- [Responsividade (celular)](#responsividade-celular)
+- [Publicação e cache (GitHub Pages)](#publicação-e-cache-github-pages)
 - [Como o código funciona](#como-o-código-funciona)
 - [Como adicionar um produto](#como-adicionar-um-produto)
 - [Regras do orçamento de hospedagem](#regras-do-orçamento-de-hospedagem)
@@ -44,6 +46,7 @@ O site permite navegar pelo catálogo, montar um carrinho, simular a finalizaç�
 - **Narração por voz (opção Cegos):** lê o conteúdo da página em voz alta, com escolha de velocidade, para apoiar pessoas cegas e com baixa visão.
 - **Tradutor de Libras (opção Surdos):** widget VLibras, do governo federal, que traduz o texto em português para a Língua Brasileira de Sinais, para apoiar pessoas surdas.
 - **Ajustes de leitura e contraste (opção Baixa visão):** widget Sienna, que permite aumentar a fonte, mudar o contraste, usar fonte para dislexia, parar animações e outros ajustes.
+- **Layout responsivo:** o site se adapta a celulares, tablets e computadores, com menu de navegação que recolhe em telas pequenas.
 - **Menu e rodapé** iguais em todas as páginas.
 
 ## Tecnologias
@@ -161,7 +164,7 @@ O Sienna e o VLibras trazem, cada um, o seu **próprio botão flutuante**. Para 
 | `fecharMenuAcessibilidade()` | Fecha o menu |
 | `abrirBaixaVisao()` | Clica no botão do Sienna (ou avisa que não carregou) |
 | `abrirLibras()` | Clica no botão do VLibras (ou avisa que não carregou) |
-| `esconderBotaoLibras()` | Mantém escondido o botão flutuante original do VLibras |
+| `esconderBotaoLibras()` | Mantém escondidos os botões flutuantes originais do VLibras e do Sienna |
 | `narrar()`, `pararNarracao()`, `mudarVelocidade()` | Narração por voz |
 
 ### Atenção ao atualizar os widgets
@@ -345,6 +348,44 @@ Além do menu de acessibilidade, as próprias páginas foram escritas para funci
 | Foco visível | Todo o site | Contorno claro em links, botões e campos ao navegar pelo teclado |
 | Resultado do orçamento com `aria-live="polite"` | `orcamento_hospedagem.html` | O total novo é anunciado a cada mudança |
 
+## Responsividade (celular)
+
+O site foi ajustado para funcionar em telas pequenas, sem rolagem lateral. O ponto de virada é **720 px de largura**.
+
+| Elemento | Computador | Celular (até 720 px) |
+|---|---|---|
+| Menu principal | Links lado a lado no cabeçalho | Recolhido atrás do botão **Menu** (abre e fecha com toque; usa `aria-expanded`) |
+| Links do menu | Em linha | Um por linha, com altura de toque confortável (mínimo de 44 px) |
+| Produtos | Cartões lado a lado | Um cartão por linha, na largura toda |
+| Tabela do carrinho | Largura normal | Letra e espaços menores; rola para o lado se ainda não couber |
+| Títulos | Tamanho normal | Menores, para não quebrar palavras |
+| Botões e perguntas do FAQ | Tamanho normal | Área de toque maior |
+| Botão de acessibilidade | 64 px, canto inferior direito | 56 px; o menu abre **acima** do botão, com largura da tela |
+| Rodapé | Normal | Com espaço extra embaixo, para o botão flutuante não cobrir o texto |
+
+Outros cuidados:
+
+- Todas as caixas usam `box-sizing: border-box`, então campos e botões não estouram a largura.
+- Os campos de formulário usam letra de 16 px, o que evita o zoom automático ao tocar em um campo no iPhone.
+- Em celular deitado (pouca altura), o menu de acessibilidade ocupa a altura disponível e rola por dentro, sem sair da tela.
+- O botão "Menu" só aparece no celular. Se o JavaScript não carregar, a navegação continua visível.
+
+**Como foi testado:** 111 verificações automáticas em navegador, em telas de 320×568, 360×640, 390×844, 768×1024 e 740×360 (celular deitado), conferindo que nenhuma das 10 páginas tem rolagem lateral nem erro de JavaScript.
+
+**Função:** `abrirMenu()` em `js/script.js`.
+
+## Publicação e cache (GitHub Pages)
+
+Se o site publicado aparecer **sem estilo** (por exemplo, o menu de acessibilidade como uma lista de botões com ícones enormes), o navegador ou o GitHub Pages está usando uma cópia **antiga** do `css/style.css`. Para resolver:
+
+1. **Envie todos os arquivos** da pasta do projeto, e não só os `.html`: principalmente `css/style.css` e `js/script.js`. Os três tipos de arquivo precisam ser da mesma versão.
+2. Aguarde o GitHub Pages terminar a publicação (alguns minutos).
+3. No navegador, force a atualização: `Ctrl + F5` (Windows) ou `Cmd + Shift + R` (Mac). No celular, limpe os dados do site ou abra em aba anônima.
+
+Para evitar cache antigo, os arquivos são chamados com um número de versão (`css/style.css?v=3` e `js/script.js?v=3`). **Quando alterar o CSS ou o JavaScript, aumente o número** (`?v=4`, `?v=5`...) em todas as páginas.
+
+Proteção extra: mesmo se o CSS não carregar, o menu de acessibilidade nasce fechado e os ícones têm tamanho próprio, então a página não fica quebrada.
+
 ## Como o código funciona
 
 Todo o JavaScript está em `js/script.js` e é carregado por todas as páginas. As funções verificam se o elemento que precisam existe antes de agir, então cada função só trabalha na página certa.
@@ -466,7 +507,6 @@ Exemplo: plano Padrão, 12 meses, com backup e domínio:
 - Back-end para salvar pedidos, contas e mensagens.
 - Pagamento real e cálculo de frete.
 - Busca e filtro de produtos por categoria.
-- Menu que recolhe em telas pequenas.
 
 ## Equipe
 

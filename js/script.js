@@ -209,6 +209,20 @@ function calcular() {
     document.getElementById("resultado").innerHTML = formatar(total);
 }
 
+// ----- Menu de navegação do celular -----
+// No celular o menu principal fica recolhido; o botão "Menu" abre e fecha.
+function abrirMenu() {
+    var nav = document.getElementById("menu-principal");
+    var botao = document.getElementById("menu-botao");
+    if (nav.className == "fechado") {
+        nav.className = "";
+        botao.setAttribute("aria-expanded", "true");
+    } else {
+        nav.className = "fechado";
+        botao.setAttribute("aria-expanded", "false");
+    }
+}
+
 // ----- Menu de acessibilidade (botão flutuante) -----
 // Um único botão abre o menu com as opções:
 //   Baixa visão -> abre o widget Sienna
@@ -254,6 +268,11 @@ function abrirBaixaVisao() {
 function esconderBotaoLibras() {
     if (window.VLibrasWidget != undefined && window.VLibrasWidget.initBtn != undefined) {
         window.VLibrasWidget.initBtn.style.display = "none";
+    }
+    // Garante também que o botão original do Sienna fique escondido
+    var botaoSienna = document.querySelector(".asw-menu-btn");
+    if (botaoSienna != null) {
+        botaoSienna.style.visibility = "hidden";
     }
 }
 
@@ -325,6 +344,8 @@ function mudarVelocidade() {
 
 // Roda quando a página termina de carregar
 window.onload = function () {
+    // O menu começa fechado (a classe só tem efeito em telas pequenas, veja o CSS)
+    document.getElementById("menu-principal").className = "fechado";
     setInterval(esconderBotaoLibras, 300);
     window.onkeydown = function (evento) {
         if (evento.key == "Escape") {
