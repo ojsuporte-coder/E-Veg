@@ -10,6 +10,42 @@ function formatar(valor) {
     return "R$ " + valor.toFixed(2).replace(".", ",");
 }
 
+// Descobre a posição de um produto nas listas
+function acharPosicao(id) {
+    for (var i = 0; i < ids.length; i++) {
+        if (ids[i] == id) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// ----- Mensagens para leitores de tela (WAI-ARIA) -----
+// O parágrafo <p id="aviso" role="status"> é uma "região viva":
+// quando o texto dele muda, o leitor de tela fala a mensagem sozinho.
+function avisar(mensagem) {
+    var aviso = document.getElementById("aviso");
+    if (aviso != null) {
+        aviso.innerHTML = mensagem;
+    }
+}
+
+// ----- Perguntas do FAQ (botão que abre e fecha) -----
+// aria-expanded diz ao leitor de tela se a resposta está aberta ("true") ou fechada ("false")
+function alternar(idResposta, idBotao) {
+    var resposta = document.getElementById(idResposta);
+    var botao = document.getElementById(idBotao);
+    if (resposta.hidden == true) {
+        resposta.hidden = false;
+        botao.setAttribute("aria-expanded", "true");
+    } else {
+        resposta.hidden = true;
+        botao.setAttribute("aria-expanded", "false");
+    }
+}
+
+// ----- Carrinho -----
+
 // Pega quantas unidades de um produto estão no carrinho
 function pegarQuantidade(id) {
     var q = localStorage.getItem("eveg_" + id);
@@ -21,10 +57,11 @@ function pegarQuantidade(id) {
 
 // Botão "Adicionar ao carrinho"
 function adicionar(id) {
-    var q = pegarQuantidade(id);
-    localStorage.setItem("eveg_" + id, q + 1);
+    var q = pegarQuantidade(id) + 1;
+    localStorage.setItem("eveg_" + id, q);
     atualizarContador();
-    alert("Produto adicionado ao carrinho!");
+    var nome = nomes[acharPosicao(id)];
+    avisar(nome + " adicionado ao carrinho. Quantidade: " + q + ". Itens no carrinho: " + contarItens() + ".");
 }
 
 // Botão "Remover" do carrinho
@@ -32,6 +69,10 @@ function remover(id) {
     localStorage.removeItem("eveg_" + id);
     atualizarContador();
     mostrarCarrinho();
+    avisar(nomes[acharPosicao(id)] + " removido do carrinho. Itens no carrinho: " + contarItens() + ".");
+    // leva o foco para o título, para quem usa teclado não ficar "perdido"
+    document.getElementsByTagName("h1")[0].setAttribute("tabindex", "-1");
+    document.getElementsByTagName("h1")[0].focus();
 }
 
 // Soma todos os itens do carrinho
@@ -70,8 +111,8 @@ function mostrarCarrinho() {
         area.innerHTML = "<p>Seu carrinho está vazio. <a href='produtos.html'>Ver produtos</a></p>";
         return;
     }
-    var texto = "<table>";
-    texto = texto + "<tr><th>Produto</th><th>Preço</th><th>Qtd.</th><th>Subtotal</th><th></th></tr>";
+    var texto = "<table aria-label='Itens do carrinho'>";
+    texto = texto + "<tr><th scope='col'>Produto</th><th scope='col'>Preço</th><th scope='col'>Qtd.</th><th scope='col'>Subtotal</th><th scope='col'>Ação</th></tr>";
     for (var i = 0; i < ids.length; i++) {
         var q = pegarQuantidade(ids[i]);
         if (q > 0) {
@@ -80,12 +121,12 @@ function mostrarCarrinho() {
             texto = texto + "<td>" + formatar(precos[i]) + "</td>";
             texto = texto + "<td>" + q + "</td>";
             texto = texto + "<td>" + formatar(precos[i] * q) + "</td>";
-            texto = texto + "<td><button onclick=\"remover('" + ids[i] + "')\">Remover</button></td>";
+            texto = texto + "<td><button onclick=\"remover('" + ids[i] + "')\" aria-label=\"Remover " + nomes[i] + " do carrinho\">Remover</button></td>";
             texto = texto + "</tr>";
         }
     }
     texto = texto + "</table>";
-    texto = texto + "<h3>Total: " + formatar(calcularTotal()) + "</h3>";
+    texto = texto + "<h2>Total: " + formatar(calcularTotal()) + "</h2>";
     texto = texto + "<a class='botao' href='checkout.html'>Finalizar compra</a>";
     area.innerHTML = texto;
 }
@@ -98,6 +139,7 @@ function mostrarResumo() {
     }
     if (contarItens() == 0) {
         area.innerHTML = "<p>Não há itens no carrinho. <a href='produtos.html'>Ver produtos</a></p>";
+        document.getElementById("form-checkout").hidden = true;
         return;
     }
     var texto = "<ul>";
@@ -114,27 +156,27 @@ function mostrarResumo() {
 
 // Botão "Confirmar pedido"
 function finalizar() {
-    if (contarItens() == 0) {
-        alert("Seu carrinho está vazio!");
-        return false;
-    }
     for (var i = 0; i < ids.length; i++) {
         localStorage.removeItem("eveg_" + ids[i]);
     }
-    alert("Pedido recebido! (Este site é só uma demonstração, nada foi cobrado.)");
-    window.location = "index.html";
+    atualizarContador();
+    document.getElementById("form-checkout").hidden = true;
+    document.getElementById("resumo").hidden = true;
+    avisar("Pedido recebido! Este site é só uma demonstração, nada foi cobrado. <a href='index.html'>Voltar ao início</a>");
     return false;
 }
 
 // Formulário de contato
 function enviarContato() {
-    alert("Mensagem enviada! Responderemos em breve.");
+    avisar("Mensagem enviada! Responderemos em breve.");
+    document.getElementById("form-contato").reset();
     return false;
 }
 
 // Formulário de login
 function entrar() {
-    alert("Login de demonstração: ainda não existe um servidor para conferir a senha.");
+    avisar("Login de demonstração: ainda não existe um servidor para conferir a senha.");
+    document.getElementById("form-login").reset();
     return false;
 }
 
@@ -167,8 +209,129 @@ function calcular() {
     document.getElementById("resultado").innerHTML = formatar(total);
 }
 
+// ----- Menu de acessibilidade (botão flutuante) -----
+// Um único botão abre o menu com as opções:
+//   Baixa visão -> abre o widget Sienna
+//   Cegos       -> liga a narração por voz (abaixo)
+//   Surdos      -> abre o VLibras (tradutor de Libras)
+// O Sienna e o VLibras trazem o próprio botão flutuante; aqui escondemos os dois
+// (o do Sienna no CSS e o do VLibras pelo JavaScript) e "clicamos" neles por código,
+// para só existir um botão na tela.
+
+// Abre ou fecha o menu
+function abrirMenuAcessibilidade() {
+    var menu = document.getElementById("acess-menu");
+    var botao = document.getElementById("acess-botao");
+    if (menu.style.display == "block") {
+        fecharMenuAcessibilidade();
+    } else {
+        menu.style.display = "block";
+        botao.setAttribute("aria-expanded", "true");
+        document.getElementById("item-baixa-visao").focus();
+    }
+}
+
+// Fecha o menu
+function fecharMenuAcessibilidade() {
+    document.getElementById("acess-menu").style.display = "none";
+    document.getElementById("acess-botao").setAttribute("aria-expanded", "false");
+}
+
+// Opção "Baixa visão": abre o menu do Sienna
+function abrirBaixaVisao() {
+    var botaoSienna = document.querySelector(".asw-menu-btn");
+    if (botaoSienna == null) {
+        alert("Os ajustes de baixa visão não carregaram. Verifique a conexão com a internet e recarregue a página.");
+        return;
+    }
+    fecharMenuAcessibilidade();
+    botaoSienna.click();
+}
+
+// O VLibras guarda o botão dele em window.VLibrasWidget.initBtn (isso está no manual oficial).
+// Esta função esconde esse botão. Ela roda de tempo em tempo porque o VLibras
+// mostra o botão de novo quando a janela dele é fechada.
+function esconderBotaoLibras() {
+    if (window.VLibrasWidget != undefined && window.VLibrasWidget.initBtn != undefined) {
+        window.VLibrasWidget.initBtn.style.display = "none";
+    }
+}
+
+// Opção "Surdos": abre o VLibras
+function abrirLibras() {
+    if (window.VLibrasWidget == undefined || window.VLibrasWidget.initBtn == undefined) {
+        alert("O tradutor de Libras não carregou. Verifique a conexão com a internet e recarregue a página.");
+        return;
+    }
+    fecharMenuAcessibilidade();
+    window.VLibrasWidget.initBtn.click();
+}
+
+// ----- Narração por voz (acessibilidade) -----
+// Usa a Web Speech API (parte de síntese de voz), que já vem no navegador:
+//   window.speechSynthesis        -> controla a voz (speak, cancel)
+//   SpeechSynthesisUtterance      -> o texto que vai ser falado
+//     .lang  = idioma da voz      .rate = velocidade da voz
+//     .onend = evento chamado quando a fala termina
+
+var narrando = false;
+
+// Botão "Narrar página": começa ou para a leitura em voz alta
+function narrar() {
+    if (!("speechSynthesis" in window)) {
+        alert("Seu navegador não tem suporte para narração por voz.");
+        return;
+    }
+    if (narrando == true) {
+        pararNarracao();
+        return;
+    }
+
+    // 1) Pega o título da página e todo o texto do conteúdo principal
+    var principal = document.getElementsByTagName("main")[0];
+    var texto = "Página " + document.title + ". " + principal.innerText;
+
+    // 2) Cria o "pedido de fala" com o texto, o idioma e a velocidade
+    var fala = new SpeechSynthesisUtterance(texto);
+    fala.lang = "pt-BR";
+    fala.rate = Number(document.getElementById("velocidade").value);
+    fala.onend = function () {
+        narrando = false;
+        document.getElementById("texto-narrar").innerHTML = "Narrar a página em voz alta";
+    };
+
+    // 3) Cancela qualquer fala anterior e manda o navegador falar
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(fala);
+
+    narrando = true;
+    document.getElementById("texto-narrar").innerHTML = "Parar narração";
+}
+
+// Para a voz
+function pararNarracao() {
+    window.speechSynthesis.cancel();
+    narrando = false;
+    document.getElementById("texto-narrar").innerHTML = "Narrar a página em voz alta";
+}
+
+// Se mudar a velocidade durante a leitura, recomeça com a nova velocidade
+function mudarVelocidade() {
+    if (narrando == true) {
+        pararNarracao();
+        narrar();
+    }
+}
+
 // Roda quando a página termina de carregar
 window.onload = function () {
+    setInterval(esconderBotaoLibras, 300);
+    window.onkeydown = function (evento) {
+        if (evento.key == "Escape") {
+            fecharMenuAcessibilidade();
+            document.getElementById("acess-botao").focus();
+        }
+    };
     atualizarContador();
     mostrarCarrinho();
     mostrarResumo();
