@@ -1,9 +1,40 @@
 // JavaScript do E-veg
 
 // Lista de produtos (cada posição de uma lista combina com as outras)
-var ids = ["hamburguer", "leite", "queijo", "chocolate", "granola", "sabonete"];
-var nomes = ["Hambúrguer de grão-de-bico", "Leite de aveia", "Queijo de castanha", "Chocolate 70% cacau", "Granola artesanal", "Sabonete vegetal"];
-var precos = [24.9, 12.5, 38.0, 16.9, 21.0, 14.0];
+// Para adicionar um produto, coloque o novo item no FIM das três listas.
+var ids = [
+    "hamburguer", "leite", "queijo", "chocolate",
+    "granola", "sabonete", "almondega-lentilha", "tofu",
+    "tempeh", "seitan", "nuggets-soja", "linguica-vegetal",
+    "leite-amendoas", "leite-coco", "iogurte-coco", "manteiga-castanha",
+    "cream-cheese-caju", "kombucha", "suco-verde", "brigadeiro",
+    "barra-cereais", "cookie-aveia", "sorvete-acai", "chips-grao",
+    "pate-grao", "pasta-amendoim", "aveia-flocos", "azeite",
+    "cafe", "farinha-amendoas", "macarrao-integral", "molho-tomate",
+    "xarope-agave", "shampoo-solido", "creme-dental", "desodorante"
+];
+var nomes = [
+    "Hambúrguer de grão-de-bico", "Leite de aveia", "Queijo de castanha", "Chocolate 70% cacau",
+    "Granola artesanal", "Sabonete vegetal", "Almôndega de lentilha", "Tofu orgânico firme",
+    "Tempeh de soja", "Seitan temperado", "Nuggets de soja", "Linguiça vegetal defumada",
+    "Leite de amêndoas", "Leite de coco", "Iogurte de coco natural", "Manteiga vegetal de castanha",
+    "Cream cheese de castanha-de-caju", "Kombucha de gengibre", "Suco verde prensado a frio", "Brigadeiro vegano",
+    "Barra de cereais com castanhas", "Cookies de aveia e cacau", "Sorvete de açaí vegano", "Chips de grão-de-bico",
+    "Patê de grão-de-bico", "Pasta de amendoim integral", "Aveia em flocos", "Azeite de oliva extravirgem",
+    "Café orgânico torrado e moído", "Farinha de amêndoas", "Macarrão integral sem ovos", "Molho de tomate artesanal",
+    "Xarope de agave", "Shampoo sólido vegano", "Creme dental natural", "Desodorante natural em creme"
+];
+var precos = [
+    24.9, 12.5, 38.0, 16.9,
+    21.0, 14.0, 22.9, 11.9,
+    18.5, 19.9, 17.9, 23.9,
+    16.9, 9.9, 8.9, 24.9,
+    29.9, 12.0, 13.5, 27.9,
+    4.5, 15.9, 26.9, 9.9,
+    14.9, 22.0, 7.9, 39.9,
+    21.9, 32.9, 8.5, 12.9,
+    19.9, 28.0, 13.9, 25.0
+];
 
 // Mostra o valor como dinheiro. Ex: 12.5 vira R$ 12,50
 function formatar(valor) {

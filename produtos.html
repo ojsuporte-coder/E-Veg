@@ -68,43 +68,237 @@
     <main id="conteudo" tabindex="-1">
         <h1>Produtos</h1>
         <p id="aviso" class="aviso" role="status"></p>
-        <section aria-label="Lista de produtos">
-        <article class="produto" aria-labelledby="nome-hamburguer">
-            <h3 id="nome-hamburguer">Hambúrguer de grão-de-bico</h3>
-            <p>Pacote com 4 unidades, pronto para grelhar.</p>
-            <p class="preco">R$ 24,90</p>
-            <button class="botao" onclick="adicionar('hamburguer')" aria-label="Adicionar Hambúrguer de grão-de-bico ao carrinho">Adicionar ao carrinho</button>
-        </article>
-        <article class="produto" aria-labelledby="nome-leite">
-            <h3 id="nome-leite">Leite de aveia</h3>
-            <p>Sem açúcar adicionado, 1 litro.</p>
-            <p class="preco">R$ 12,50</p>
-            <button class="botao" onclick="adicionar('leite')" aria-label="Adicionar Leite de aveia ao carrinho">Adicionar ao carrinho</button>
-        </article>
-        <article class="produto" aria-labelledby="nome-queijo">
-            <h3 id="nome-queijo">Queijo de castanha</h3>
-            <p>Curado, feito com castanha-de-caju, 200 g.</p>
-            <p class="preco">R$ 38,00</p>
-            <button class="botao" onclick="adicionar('queijo')" aria-label="Adicionar Queijo de castanha ao carrinho">Adicionar ao carrinho</button>
-        </article>
-        <article class="produto" aria-labelledby="nome-chocolate">
-            <h3 id="nome-chocolate">Chocolate 70% cacau</h3>
-            <p>Barra sem leite nem derivados, 80 g.</p>
-            <p class="preco">R$ 16,90</p>
-            <button class="botao" onclick="adicionar('chocolate')" aria-label="Adicionar Chocolate 70% cacau ao carrinho">Adicionar ao carrinho</button>
-        </article>
-        <article class="produto" aria-labelledby="nome-granola">
-            <h3 id="nome-granola">Granola artesanal</h3>
-            <p>Aveia, castanhas e frutas secas, 400 g.</p>
-            <p class="preco">R$ 21,00</p>
-            <button class="botao" onclick="adicionar('granola')" aria-label="Adicionar Granola artesanal ao carrinho">Adicionar ao carrinho</button>
-        </article>
-        <article class="produto" aria-labelledby="nome-sabonete">
-            <h3 id="nome-sabonete">Sabonete vegetal</h3>
-            <p>Sem testes em animais, lavanda, 90 g.</p>
-            <p class="preco">R$ 14,00</p>
-            <button class="botao" onclick="adicionar('sabonete')" aria-label="Adicionar Sabonete vegetal ao carrinho">Adicionar ao carrinho</button>
-        </article>
+        <p class="categorias" role="navigation" aria-label="Categorias de produtos"><b>Ir para:</b> <a href="#cat-alimentos">Alimentos e proteínas</a> <a href="#cat-bebidas">Laticínios vegetais e bebidas</a> <a href="#cat-doces">Doces e snacks</a> <a href="#cat-mercearia">Mercearia</a> <a href="#cat-cuidados">Cuidados pessoais</a></p>
+        <section aria-labelledby="cat-alimentos">
+            <h2 id="cat-alimentos">Alimentos e proteínas</h2>
+            <article class="produto" aria-labelledby="nome-hamburguer">
+                <h3 id="nome-hamburguer">Hambúrguer de grão-de-bico</h3>
+                <p>Pacote com 4 unidades, pronto para grelhar.</p>
+                <p class="preco">R$ 24,90</p>
+                <button class="botao" onclick="adicionar('hamburguer')" aria-label="Adicionar Hambúrguer de grão-de-bico ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-almondega-lentilha">
+                <h3 id="nome-almondega-lentilha">Almôndega de lentilha</h3>
+                <p>Pacote com 12 unidades, 300 g.</p>
+                <p class="preco">R$ 22,90</p>
+                <button class="botao" onclick="adicionar('almondega-lentilha')" aria-label="Adicionar Almôndega de lentilha ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-tofu">
+                <h3 id="nome-tofu">Tofu orgânico firme</h3>
+                <p>Ótimo para grelhar e refogar, 350 g.</p>
+                <p class="preco">R$ 11,90</p>
+                <button class="botao" onclick="adicionar('tofu')" aria-label="Adicionar Tofu orgânico firme ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-tempeh">
+                <h3 id="nome-tempeh">Tempeh de soja</h3>
+                <p>Fermentado, rico em proteínas, 200 g.</p>
+                <p class="preco">R$ 18,50</p>
+                <button class="botao" onclick="adicionar('tempeh')" aria-label="Adicionar Tempeh de soja ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-seitan">
+                <h3 id="nome-seitan">Seitan temperado</h3>
+                <p>Proteína de trigo com ervas, 250 g.</p>
+                <p class="preco">R$ 19,90</p>
+                <button class="botao" onclick="adicionar('seitan')" aria-label="Adicionar Seitan temperado ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-nuggets-soja">
+                <h3 id="nome-nuggets-soja">Nuggets de soja</h3>
+                <p>Empanados e crocantes, 15 unidades, 300 g.</p>
+                <p class="preco">R$ 17,90</p>
+                <button class="botao" onclick="adicionar('nuggets-soja')" aria-label="Adicionar Nuggets de soja ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-linguica-vegetal">
+                <h3 id="nome-linguica-vegetal">Linguiça vegetal defumada</h3>
+                <p>Pacote com 4 unidades, 320 g.</p>
+                <p class="preco">R$ 23,90</p>
+                <button class="botao" onclick="adicionar('linguica-vegetal')" aria-label="Adicionar Linguiça vegetal defumada ao carrinho">Adicionar ao carrinho</button>
+            </article>
+        </section>
+        <section aria-labelledby="cat-bebidas">
+            <h2 id="cat-bebidas">Laticínios vegetais e bebidas</h2>
+            <article class="produto" aria-labelledby="nome-leite">
+                <h3 id="nome-leite">Leite de aveia</h3>
+                <p>Sem açúcar adicionado, 1 litro.</p>
+                <p class="preco">R$ 12,50</p>
+                <button class="botao" onclick="adicionar('leite')" aria-label="Adicionar Leite de aveia ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-queijo">
+                <h3 id="nome-queijo">Queijo de castanha</h3>
+                <p>Curado, feito com castanha-de-caju, 200 g.</p>
+                <p class="preco">R$ 38,00</p>
+                <button class="botao" onclick="adicionar('queijo')" aria-label="Adicionar Queijo de castanha ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-leite-amendoas">
+                <h3 id="nome-leite-amendoas">Leite de amêndoas</h3>
+                <p>Sem açúcar adicionado, 1 litro.</p>
+                <p class="preco">R$ 16,90</p>
+                <button class="botao" onclick="adicionar('leite-amendoas')" aria-label="Adicionar Leite de amêndoas ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-leite-coco">
+                <h3 id="nome-leite-coco">Leite de coco</h3>
+                <p>Para receitas doces e salgadas, 500 ml.</p>
+                <p class="preco">R$ 9,90</p>
+                <button class="botao" onclick="adicionar('leite-coco')" aria-label="Adicionar Leite de coco ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-iogurte-coco">
+                <h3 id="nome-iogurte-coco">Iogurte de coco natural</h3>
+                <p>Sem lactose e sem açúcar, 170 g.</p>
+                <p class="preco">R$ 8,90</p>
+                <button class="botao" onclick="adicionar('iogurte-coco')" aria-label="Adicionar Iogurte de coco natural ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-manteiga-castanha">
+                <h3 id="nome-manteiga-castanha">Manteiga vegetal de castanha</h3>
+                <p>Cremosa, para passar no pão, 200 g.</p>
+                <p class="preco">R$ 24,90</p>
+                <button class="botao" onclick="adicionar('manteiga-castanha')" aria-label="Adicionar Manteiga vegetal de castanha ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-cream-cheese-caju">
+                <h3 id="nome-cream-cheese-caju">Cream cheese de castanha-de-caju</h3>
+                <p>Textura cremosa, 150 g.</p>
+                <p class="preco">R$ 29,90</p>
+                <button class="botao" onclick="adicionar('cream-cheese-caju')" aria-label="Adicionar Cream cheese de castanha-de-caju ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-kombucha">
+                <h3 id="nome-kombucha">Kombucha de gengibre</h3>
+                <p>Bebida fermentada, 300 ml.</p>
+                <p class="preco">R$ 12,00</p>
+                <button class="botao" onclick="adicionar('kombucha')" aria-label="Adicionar Kombucha de gengibre ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-suco-verde">
+                <h3 id="nome-suco-verde">Suco verde prensado a frio</h3>
+                <p>Couve, maçã e limão, 300 ml.</p>
+                <p class="preco">R$ 13,50</p>
+                <button class="botao" onclick="adicionar('suco-verde')" aria-label="Adicionar Suco verde prensado a frio ao carrinho">Adicionar ao carrinho</button>
+            </article>
+        </section>
+        <section aria-labelledby="cat-doces">
+            <h2 id="cat-doces">Doces e snacks</h2>
+            <article class="produto" aria-labelledby="nome-chocolate">
+                <h3 id="nome-chocolate">Chocolate 70% cacau</h3>
+                <p>Barra sem leite nem derivados, 80 g.</p>
+                <p class="preco">R$ 16,90</p>
+                <button class="botao" onclick="adicionar('chocolate')" aria-label="Adicionar Chocolate 70% cacau ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-brigadeiro">
+                <h3 id="nome-brigadeiro">Brigadeiro vegano</h3>
+                <p>Caixa com 6 unidades, 160 g.</p>
+                <p class="preco">R$ 27,90</p>
+                <button class="botao" onclick="adicionar('brigadeiro')" aria-label="Adicionar Brigadeiro vegano ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-barra-cereais">
+                <h3 id="nome-barra-cereais">Barra de cereais com castanhas</h3>
+                <p>Sem conservantes, 40 g.</p>
+                <p class="preco">R$ 4,50</p>
+                <button class="botao" onclick="adicionar('barra-cereais')" aria-label="Adicionar Barra de cereais com castanhas ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-cookie-aveia">
+                <h3 id="nome-cookie-aveia">Cookies de aveia e cacau</h3>
+                <p>Crocantes, 150 g.</p>
+                <p class="preco">R$ 15,90</p>
+                <button class="botao" onclick="adicionar('cookie-aveia')" aria-label="Adicionar Cookies de aveia e cacau ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-sorvete-acai">
+                <h3 id="nome-sorvete-acai">Sorvete de açaí vegano</h3>
+                <p>Sem lactose, 500 ml.</p>
+                <p class="preco">R$ 26,90</p>
+                <button class="botao" onclick="adicionar('sorvete-acai')" aria-label="Adicionar Sorvete de açaí vegano ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-chips-grao">
+                <h3 id="nome-chips-grao">Chips de grão-de-bico</h3>
+                <p>Assados, sabor páprica, 80 g.</p>
+                <p class="preco">R$ 9,90</p>
+                <button class="botao" onclick="adicionar('chips-grao')" aria-label="Adicionar Chips de grão-de-bico ao carrinho">Adicionar ao carrinho</button>
+            </article>
+        </section>
+        <section aria-labelledby="cat-mercearia">
+            <h2 id="cat-mercearia">Mercearia</h2>
+            <article class="produto" aria-labelledby="nome-granola">
+                <h3 id="nome-granola">Granola artesanal</h3>
+                <p>Aveia, castanhas e frutas secas, 400 g.</p>
+                <p class="preco">R$ 21,00</p>
+                <button class="botao" onclick="adicionar('granola')" aria-label="Adicionar Granola artesanal ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-pate-grao">
+                <h3 id="nome-pate-grao">Patê de grão-de-bico</h3>
+                <p>Pronto para passar, 180 g.</p>
+                <p class="preco">R$ 14,90</p>
+                <button class="botao" onclick="adicionar('pate-grao')" aria-label="Adicionar Patê de grão-de-bico ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-pasta-amendoim">
+                <h3 id="nome-pasta-amendoim">Pasta de amendoim integral</h3>
+                <p>Sem açúcar adicionado, 500 g.</p>
+                <p class="preco">R$ 22,00</p>
+                <button class="botao" onclick="adicionar('pasta-amendoim')" aria-label="Adicionar Pasta de amendoim integral ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-aveia-flocos">
+                <h3 id="nome-aveia-flocos">Aveia em flocos</h3>
+                <p>Grossa, 500 g.</p>
+                <p class="preco">R$ 7,90</p>
+                <button class="botao" onclick="adicionar('aveia-flocos')" aria-label="Adicionar Aveia em flocos ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-azeite">
+                <h3 id="nome-azeite">Azeite de oliva extravirgem</h3>
+                <p>Acidez de até 0,5%, 500 ml.</p>
+                <p class="preco">R$ 39,90</p>
+                <button class="botao" onclick="adicionar('azeite')" aria-label="Adicionar Azeite de oliva extravirgem ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-cafe">
+                <h3 id="nome-cafe">Café orgânico torrado e moído</h3>
+                <p>Torra média, 250 g.</p>
+                <p class="preco">R$ 21,90</p>
+                <button class="botao" onclick="adicionar('cafe')" aria-label="Adicionar Café orgânico torrado e moído ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-farinha-amendoas">
+                <h3 id="nome-farinha-amendoas">Farinha de amêndoas</h3>
+                <p>Para bolos e panquecas, 250 g.</p>
+                <p class="preco">R$ 32,90</p>
+                <button class="botao" onclick="adicionar('farinha-amendoas')" aria-label="Adicionar Farinha de amêndoas ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-macarrao-integral">
+                <h3 id="nome-macarrao-integral">Macarrão integral sem ovos</h3>
+                <p>Espaguete, 500 g.</p>
+                <p class="preco">R$ 8,50</p>
+                <button class="botao" onclick="adicionar('macarrao-integral')" aria-label="Adicionar Macarrão integral sem ovos ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-molho-tomate">
+                <h3 id="nome-molho-tomate">Molho de tomate artesanal</h3>
+                <p>Com manjericão, 330 g.</p>
+                <p class="preco">R$ 12,90</p>
+                <button class="botao" onclick="adicionar('molho-tomate')" aria-label="Adicionar Molho de tomate artesanal ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-xarope-agave">
+                <h3 id="nome-xarope-agave">Xarope de agave</h3>
+                <p>Adoçante natural, 250 ml.</p>
+                <p class="preco">R$ 19,90</p>
+                <button class="botao" onclick="adicionar('xarope-agave')" aria-label="Adicionar Xarope de agave ao carrinho">Adicionar ao carrinho</button>
+            </article>
+        </section>
+        <section aria-labelledby="cat-cuidados">
+            <h2 id="cat-cuidados">Cuidados pessoais</h2>
+            <article class="produto" aria-labelledby="nome-sabonete">
+                <h3 id="nome-sabonete">Sabonete vegetal</h3>
+                <p>Sem testes em animais, lavanda, 90 g.</p>
+                <p class="preco">R$ 14,00</p>
+                <button class="botao" onclick="adicionar('sabonete')" aria-label="Adicionar Sabonete vegetal ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-shampoo-solido">
+                <h3 id="nome-shampoo-solido">Shampoo sólido vegano</h3>
+                <p>Para todos os tipos de cabelo, 80 g.</p>
+                <p class="preco">R$ 28,00</p>
+                <button class="botao" onclick="adicionar('shampoo-solido')" aria-label="Adicionar Shampoo sólido vegano ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-creme-dental">
+                <h3 id="nome-creme-dental">Creme dental natural</h3>
+                <p>Sabor hortelã, 90 g.</p>
+                <p class="preco">R$ 13,90</p>
+                <button class="botao" onclick="adicionar('creme-dental')" aria-label="Adicionar Creme dental natural ao carrinho">Adicionar ao carrinho</button>
+            </article>
+            <article class="produto" aria-labelledby="nome-desodorante">
+                <h3 id="nome-desodorante">Desodorante natural em creme</h3>
+                <p>Sem alumínio, 55 g.</p>
+                <p class="preco">R$ 25,00</p>
+                <button class="botao" onclick="adicionar('desodorante')" aria-label="Adicionar Desodorante natural em creme ao carrinho">Adicionar ao carrinho</button>
+            </article>
         </section>
     </main>
     <footer>

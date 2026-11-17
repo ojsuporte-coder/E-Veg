@@ -48,12 +48,12 @@ Entregar um **MVP** (produto mínimo viável) de uma loja virtual de produtos ve
 
 | Área | O que está incluso |
 |---|---|
-| Loja | Catálogo com 6 produtos de exemplo, carrinho que guarda os itens no navegador, checkout simulado com confirmação |
+| Loja | Catálogo com 36 produtos de exemplo em 5 categorias, carrinho que guarda os itens no navegador, checkout simulado com confirmação |
 | Páginas de apoio | Início, Sobre nós (com a equipe), FAQ, Contato, Login (simulado) e Termos de uso |
 | Orçamento | Calculadora de orçamento de hospedagem (plano, período, extras e descontos) |
 | Acessibilidade | Botão único com menu: **Baixa visão** (Sienna), **Cegos** (narração por voz) e **Surdos** (VLibras), mais boas práticas WAI-ARIA no código |
 | Responsividade | Layout adaptado a celulares, tablets e computadores, com menu de navegação recolhível |
-| Qualidade | 145 verificações automáticas (pasta `tests/`) e este README |
+| Qualidade | 153 verificações automáticas (pasta `tests/`) e este README |
 
 ### Fora do escopo (não será feito neste MVP)
 
@@ -82,7 +82,7 @@ Entregar um **MVP** (produto mínimo viável) de uma loja virtual de produtos ve
 
 ## Funcionalidades
 
-- **Catálogo de produtos** com seis itens de exemplo.
+- **Catálogo de produtos** com 36 itens de exemplo, organizados em 5 categorias (alimentos e proteínas, laticínios vegetais e bebidas, doces e snacks, mercearia e cuidados pessoais), com links para ir direto a cada categoria.
 - **Carrinho de compras** que guarda os itens no navegador: eles continuam lá mesmo depois de fechar ou recarregar a página.
 - **Contador do carrinho** no menu, atualizado a cada item adicionado ou removido.
 - **Checkout simulado** com resumo do pedido, formulário de entrega e escolha da forma de pagamento.
@@ -159,7 +159,7 @@ E-Veg/
 | Página | O que faz |
 |---|---|
 | `index.html` | Apresenta a loja e leva ao catálogo |
-| `produtos.html` | Lista os produtos, cada um com botão "Adicionar ao carrinho" |
+| `produtos.html` | Lista os 36 produtos por categoria, cada um com botão "Adicionar ao carrinho" |
 | `carrinho.html` | Mostra os itens, o subtotal de cada um, o total e o botão de remover |
 | `checkout.html` | Mostra o resumo, pede os dados de entrega e confirma o pedido |
 | `contato.html` | Formulário com nome, e-mail e mensagem |
@@ -442,22 +442,58 @@ Todo o JavaScript está em `js/script.js` e é carregado por todas as páginas. 
 
 ### Dados dos produtos
 
-Os produtos ficam em três listas. A posição de cada item combina entre as listas:
+Os **36 produtos** ficam em três listas no início do `js/script.js`. A posição de cada item combina entre as listas:
 
 ```js
-var ids = ["hamburguer", "leite", "queijo", "chocolate", "granola", "sabonete"];
-var nomes = ["Hambúrguer de grão-de-bico", "Leite de aveia", ...];
-var precos = [24.9, 12.5, 38.0, 16.9, 21.0, 14.0];
+var ids = [
+    "hamburguer", "leite", "queijo", "chocolate",
+    "granola", "sabonete", "almondega-lentilha", "tofu",
+    ...
+];
+var nomes = [ "Hambúrguer de grão-de-bico", "Leite de aveia", ... ];
+var precos = [ 24.9, 12.5, 38.0, 16.9, ... ];
 ```
 
-| ID | Produto | Preço |
-|---|---|---|
-| `hamburguer` | Hambúrguer de grão-de-bico | R$ 24,90 |
-| `leite` | Leite de aveia | R$ 12,50 |
-| `queijo` | Queijo de castanha | R$ 38,00 |
-| `chocolate` | Chocolate 70% cacau | R$ 16,90 |
-| `granola` | Granola artesanal | R$ 21,00 |
-| `sabonete` | Sabonete vegetal | R$ 14,00 |
+Os 6 primeiros são os produtos originais; os outros 30 foram acrescentados depois, no fim das listas. Na página `produtos.html` eles aparecem agrupados por categoria.
+
+| ID | Produto | Categoria | Preço |
+|---|---|---|---|
+| `hamburguer` | Hambúrguer de grão-de-bico | Alimentos e proteínas | R$ 24,90 |
+| `almondega-lentilha` | Almôndega de lentilha | Alimentos e proteínas | R$ 22,90 |
+| `tofu` | Tofu orgânico firme | Alimentos e proteínas | R$ 11,90 |
+| `tempeh` | Tempeh de soja | Alimentos e proteínas | R$ 18,50 |
+| `seitan` | Seitan temperado | Alimentos e proteínas | R$ 19,90 |
+| `nuggets-soja` | Nuggets de soja | Alimentos e proteínas | R$ 17,90 |
+| `linguica-vegetal` | Linguiça vegetal defumada | Alimentos e proteínas | R$ 23,90 |
+| `leite` | Leite de aveia | Laticínios vegetais e bebidas | R$ 12,50 |
+| `queijo` | Queijo de castanha | Laticínios vegetais e bebidas | R$ 38,00 |
+| `leite-amendoas` | Leite de amêndoas | Laticínios vegetais e bebidas | R$ 16,90 |
+| `leite-coco` | Leite de coco | Laticínios vegetais e bebidas | R$ 9,90 |
+| `iogurte-coco` | Iogurte de coco natural | Laticínios vegetais e bebidas | R$ 8,90 |
+| `manteiga-castanha` | Manteiga vegetal de castanha | Laticínios vegetais e bebidas | R$ 24,90 |
+| `cream-cheese-caju` | Cream cheese de castanha-de-caju | Laticínios vegetais e bebidas | R$ 29,90 |
+| `kombucha` | Kombucha de gengibre | Laticínios vegetais e bebidas | R$ 12,00 |
+| `suco-verde` | Suco verde prensado a frio | Laticínios vegetais e bebidas | R$ 13,50 |
+| `chocolate` | Chocolate 70% cacau | Doces e snacks | R$ 16,90 |
+| `brigadeiro` | Brigadeiro vegano | Doces e snacks | R$ 27,90 |
+| `barra-cereais` | Barra de cereais com castanhas | Doces e snacks | R$ 4,50 |
+| `cookie-aveia` | Cookies de aveia e cacau | Doces e snacks | R$ 15,90 |
+| `sorvete-acai` | Sorvete de açaí vegano | Doces e snacks | R$ 26,90 |
+| `chips-grao` | Chips de grão-de-bico | Doces e snacks | R$ 9,90 |
+| `granola` | Granola artesanal | Mercearia | R$ 21,00 |
+| `pate-grao` | Patê de grão-de-bico | Mercearia | R$ 14,90 |
+| `pasta-amendoim` | Pasta de amendoim integral | Mercearia | R$ 22,00 |
+| `aveia-flocos` | Aveia em flocos | Mercearia | R$ 7,90 |
+| `azeite` | Azeite de oliva extravirgem | Mercearia | R$ 39,90 |
+| `cafe` | Café orgânico torrado e moído | Mercearia | R$ 21,90 |
+| `farinha-amendoas` | Farinha de amêndoas | Mercearia | R$ 32,90 |
+| `macarrao-integral` | Macarrão integral sem ovos | Mercearia | R$ 8,50 |
+| `molho-tomate` | Molho de tomate artesanal | Mercearia | R$ 12,90 |
+| `xarope-agave` | Xarope de agave | Mercearia | R$ 19,90 |
+| `sabonete` | Sabonete vegetal | Cuidados pessoais | R$ 14,00 |
+| `shampoo-solido` | Shampoo sólido vegano | Cuidados pessoais | R$ 28,00 |
+| `creme-dental` | Creme dental natural | Cuidados pessoais | R$ 13,90 |
+| `desodorante` | Desodorante natural em creme | Cuidados pessoais | R$ 25,00 |
 
 ### Carrinho
 
@@ -483,10 +519,13 @@ A quantidade de cada produto é guardada no `localStorage` com a chave `eveg_` s
 
 ## Como adicionar um produto
 
-1. Em `js/script.js`, acrescente o novo item no **fim** das três listas (`ids`, `nomes` e `precos`), mantendo a mesma ordem nas três.
-2. Em `produtos.html`, copie um bloco `<div class="produto">` e ajuste nome, descrição, preço e o ID dentro do `onclick="adicionar('id-do-produto')"`.
+1. Em `js/script.js`, acrescente o novo item no **fim** das três listas (`ids`, `nomes` e `precos`), mantendo a mesma ordem nas três. O `id` deve ter só letras minúsculas, números e hífen (por exemplo, `suco-laranja`).
+2. Em `produtos.html`, copie um bloco `<article class="produto">` e cole dentro da `<section>` da categoria certa. Ajuste o nome, a descrição, o preço e o ID em três lugares: `aria-labelledby`, `id` do título e `onclick="adicionar('id-do-produto')"`.
+3. Rode `python tests/teste_funcional.py`: os testes do catálogo avisam se algum nome, preço ou ID do HTML estiver diferente do JavaScript.
 
 O ID usado no `onclick` precisa ser idêntico ao ID colocado na lista `ids`.
+
+Para criar uma **categoria nova**, copie uma `<section aria-labelledby="cat-...">` inteira e acrescente o link correspondente na linha "Ir para:" no topo da página.
 
 ## Regras do orçamento de hospedagem
 
@@ -585,11 +624,11 @@ O projeto combina **testes automáticos** (rodam em um navegador real, o Chromiu
 
 ### Testes automáticos
 
-Resultado da última execução (17/11/2026): **145 verificações, 0 falhas**.
+Resultado da última execução (17/11/2026): **153 verificações, 0 falhas**.
 
 | Arquivo | Verificações | O que confere |
 |---|---|---|
-| `tests/teste_funcional.py` | 34 | As 10 páginas sem erro de JavaScript; primeiro `Tab` no botão de acessibilidade; menu abre com `Enter` e fecha com `Esc`; compra completa (adicionar, carrinho, total, checkout e confirmação); checkout com carrinho vazio; contato e login; FAQ abre e fecha; cálculo do orçamento; narração liga e desliga; opções Baixa visão e Surdos clicam nos widgets (simulados) |
+| `tests/teste_funcional.py` | 42 | As 10 páginas sem erro de JavaScript; primeiro `Tab` no botão de acessibilidade; menu abre com `Enter` e fecha com `Esc`; compra completa (adicionar, carrinho, total, checkout e confirmação); checkout com carrinho vazio; contato e login; FAQ abre e fecha; catálogo de 36 produtos (HTML e JavaScript com os mesmos ids, nomes e preços, links de categoria funcionando e compra de produtos novos); cálculo do orçamento; narração liga e desliga; opções Baixa visão e Surdos clicam nos widgets (simulados) |
 | `tests/teste_responsivo.py` | 111 | Sem rolagem lateral nas 10 páginas em 5 tamanhos de tela (320×568, 360×640, 390×844, 768×1024 e 740×360); menu do celular abre e fecha; links com altura de toque; produtos em coluna única; menu de acessibilidade dentro da tela (inclusive celular deitado); página sem CSS não fica quebrada |
 
 **Como rodar** (na pasta do projeto):
@@ -659,7 +698,7 @@ Próximos passos para evoluir o MVP, em ordem de prioridade.
 | Melhoria | Por quê |
 |---|---|
 | Máscara e validação do CEP, com busca automática do endereço | Reduz erros de digitação no checkout |
-| Busca e filtro de produtos por categoria | Facilita encontrar produtos quando o catálogo crescer |
+| Busca por nome e filtro por categoria | Hoje há links para ir a cada categoria, mas com 36 produtos uma busca ajudaria a encontrar itens mais rápido |
 | Página de detalhe de cada produto | Espaço para descrição completa, ingredientes e fotos |
 | Escolha da voz e narração de cada elemento ao receber foco | Deixa a narração mais completa para pessoas cegas |
 | Auditoria automática de acessibilidade (por exemplo, Lighthouse ou axe) | Encontra falhas que o teste atual não cobre |
@@ -726,6 +765,7 @@ A IA acelera o trabalho, mas **o código entregue é responsabilidade da equipe*
 7. Tirar o botão original do VLibras da tela principal.
 8. Corrigir o bug visual no site publicado e deixar o site responsivo para celulares.
 9. Garantir que o README tenha diário, escopo, orçamento, testes, melhorias do MVP e uso de IA.
+10. Adicionar mais 30 produtos ao catálogo.
 
 ## Diário de bordo
 
@@ -744,6 +784,7 @@ A IA acelera o trabalho, mas **o código entregue é responsabilidade da equipe*
 | 17/11/2026 | Bug visual no site publicado | Print do GitHub Pages com menu sem estilo e ícones gigantes (CSS antigo em cache) | Versão nos arquivos (`?v=3`), menu que nasce fechado e ícones com tamanho próprio |
 | 17/11/2026 | Responsividade | Menu recolhível, produtos em coluna, ajustes de toque e do menu de acessibilidade | 111 verificações automáticas em 5 tamanhos de tela |
 | 17/11/2026 | Documentação final | README com escopo, orçamento, testes, melhorias do MVP, uso de IA e este diário | 145 verificações automáticas passando; testes manuais pendentes |
+| 17/11/2026 | Ampliação do catálogo | 30 produtos novos (total de 36), organizados em 5 categorias com links de acesso rápido; testes do catálogo (ids, nomes e preços iguais no HTML e no JavaScript) | 153 verificações automáticas passando; produtos e preços continuam sendo exemplos |
 
 ### Registro da equipe (a preencher)
 

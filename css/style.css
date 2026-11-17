@@ -323,6 +323,13 @@ main {
     font-size: 18px;
 }
 
+/* Links das categorias (página de produtos) */
+.categorias a {
+    display: inline-block;
+    margin: 0 12px 6px 0;
+    font-weight: bold;
+}
+
 /* Tabela do carrinho */
 table {
     border-collapse: collapse;
@@ -475,6 +482,11 @@ footer nav {
 
     .pergunta {
         padding: 14px 0;
+    }
+
+    .categorias a {
+        padding: 8px 0;
+        margin-right: 16px;
     }
 
     footer {
